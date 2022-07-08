@@ -14,7 +14,18 @@
         <form action="/book-camping" method="post">
             <h1>Book Olaf's Camping</h1>
             <p>Required fields are followed by <abbr title="required">*</abbr>.</p>
-
+            <!-- <section class="test-section">
+                <h2>This is an experimental section</h2>
+                <ul class="main-form">
+                    <li>
+                        <input type="file" accept="image/*">
+                        <input type="file" accept="image/*;capture=camera">
+                        <input type="file" accept="video/*;capture=camcorder">
+                        <input type="file" accept="audio/*;capture=microphone">
+                    </li>
+                </ul>
+            </section> -->
+            <!-- olafs form -->
             <section>
                 <h2>Kontakt Info</h2>
                 <ul class="main-form">
@@ -39,6 +50,11 @@
              <section>
                 <h2>Reservierungs Info</h2>
                  <ul class="main-form">
+                     <li>
+                       <label for="datum">Reservierungs Datum:</label>
+                       <input type="date" id="datum" name="datum" required="required" />
+                       
+                     </li>
                      <li>
                          <label for="type-reserv">Was willst Du reservieren?</label>
                          <select id="type-reserv" name="type-reserv" required="required">
