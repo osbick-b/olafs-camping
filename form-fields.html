@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservieren - Camping Kamern</title>
+</head>
+<body>
+    <form action="/reservieren" method="get">
+        <section>
+            <h2>Reservierungs Info</h2>
+            <ol>
+                <li><label for="anreise">Anreise</label>
+                <input type="date" id="anreise" name="anreise" required="required" />
+                </li>
+                <li><label for="abreise">Abreise</label>
+                <input type="date" id="abreise" name="abreise" required="required" />
+                </li>
+                <li><label for="nErwachs">Anzahl Erwachsene</label>
+                <input type="number" id="nErwachs" name="nErwachs" value="1" required="required" />
+                </li>
+                <li><label for="nKind">Anzahl Kinder</label>
+                <input type="number" id="nKind" name="nKind"  value="0"/>
+                </li>
+                <li><label for="nHund">Anzahl Hunde</label>
+                <input type="number" id="nHund" name="nHund"  value="0"/>
+                </li>
+                <li><label for="nZelt">Zelt</label>
+                <input type="number" id="nZelt" name="nZelt"  value="0" />
+                </li>
+                <li><label for="nWohnwag">Wohnmobil/Wohnwagen</label>
+                <input type="number" id="nWohnwag" name="nWohnwag" value="0" />
+                </li>
+                <li><label for="nKFZ">KFZ</label>
+                <input type="number" id="nKFZ" name="nKFZ" value="0" />
+                </li>
+                <li><label for="nMotorrad">Motorrad</label>
+                <input type="number" id="nMotorrad" name="nMotorrad" value="0" />
+                </li>
+            </ol>
+        </section>
+        <section>
+            <button type="submit">Reservieren</button>
+        </section>
+    </form>
+</body>
+</html>
