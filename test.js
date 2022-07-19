@@ -7,16 +7,27 @@ price.addEventListener("input", function() {
     output.textContent = price.value;
 });
 
-// Min date today
+// =============================================================================
+// Date thing
+// =============================================================================
+
 const controlledDateInput = document.querySelector("#date-today");
 const todayDisplay = document.querySelector("#show-today");
 
+const dateOffsetInput = document.querySelector("#date-in-x-days");
+// --- HTML custom attributes ref - https://timnwells.medium.com/custom-attributes-in-html-correctly-681c014a4295
+// --- accessing data: elementName.dataset.customAttributeName
+// --- you have to convert case (it parses automatically. eg. data-x-days-offset ---> xDaysOffset)
+console.log(`dateOffsetInput.xDays`, dateOffsetInput.dataset.xDaysOffset);
+
+
+
+// --- Date offset fn
 const today = new Date();
 function addDays(numDays, date = today) {
-    console.log(`today FN`, today);
-    console.log(`date`, date);
+    // console.log(`date`, date);
     date.setDate(date.getDate() + numDays); // ! -- this alters the value of _date_
-    console.log(`date AFTER`, date);
+    // console.log(`date AFTER`, date);
     return date;
 }
 
