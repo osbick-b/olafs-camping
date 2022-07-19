@@ -8,11 +8,14 @@ price.addEventListener("input", function() {
 });
 
 // =============================================================================
-// Date thing
+// Date thing --- input condition based on date offset (eg. 7 days from now)
 // =============================================================================
 
-const controlledDateInput = document.querySelector("#date-today");
+const controlledDateInputToday = document.querySelector("#date-today");
+const controlledDateInputOffset = document.querySelector("#date-in-x-days");
 const todayDisplay = document.querySelector("#show-today");
+const offsetDisplay = document.querySelector(".offset-num");
+const today = new Date();
 
 const dateOffset =
     +document.querySelector("#date-in-x-days").dataset.xDaysOffset; // ! ---> gotta convert to INT!!!!
@@ -22,17 +25,21 @@ const dateOffset =
 
 
 // --- Date offset fn
-const today = new Date();
-function addDays(numDays = dateOffset, date = today) {
+function addDays(numDays = 0, date = new Date()) {
+    const dateCopy = new Date(date.getTime()); // -- you gotta create a copy, otherwise it mutates the original Date object (today)
     // console.log(`date`, date);
-    date.setDate(date.getDate() + numDays); // ! -- this alters the value of _date_
+    dateCopy.setDate(dateCopy.getDate() + numDays); // ! -- this alters the value of _date_
     // console.log(`date AFTER`, date);
-    return date;
+    return dateCopy;
 }
+// --- RES --- JS Date thing https://bobbyhadz.com/blog/javascript-date-add-weeks
 
-// console.log(`addDays(7)`, addDays(7));
-console.log(`addDays()`, addDays());
+console.log(`today`, today);
+console.log(`addDays()`, addDays(dateOffset));
+console.log(`today AFTER`, today);
 
-// controlledDateInput.min = today.toISOString().split("T")[0]; // uses "T" as el separator and picks the 1st el [0];
+controlledDateInputToday.min = today.toISOString().split("T")[0]; // uses "T" as el separator and picks the 1st el [0];
+controlledDateInputOffset.min = addDays(dateOffset).toISOString().split("T")[0];
 
-// todayDisplay.textContent = [today, inAWeek];
+todayDisplay.textContent = today;
+offsetDisplay.textContent = dateOffset;
