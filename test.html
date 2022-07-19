@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Catamaran:wght@400;700&family=Oswald:wght@400;600&display=swap"
+            rel="stylesheet"
+        />
+        <title>Campingplatz - Am Kamernschen See</title>
+    </head>
+    <body>
+        <form action="/book-camping" method="post">
+            <h1>Book Olaf's Camping</h1>
+            <p>
+                Required fields are followed by <abbr title="required">*</abbr>.
+            </p>
+
+            <!-- ====================================================================-->
+            <section>
+                <h2>File Inputs</h2>
+                <ul>
+                    <li>
+                        <input type="file" accept="image/*" />
+                        <input type="file" accept="image/*;capture=camera" />
+                        <input type="file" accept="video/*;capture=camcorder" />
+                        <input
+                            type="file"
+                            accept="audio/*;capture=microphone"
+                        />
+                    </li>
+                </ul>
+            </section>
+
+            <section class="test-section">
+                <h2>Cool Type Inputs</h2>
+                <ul class="main-form">
+                    <li>
+                        <label for="search">Type search</label>
+                        <input type="search" id="search" />
+                    </li>
+                    <li>
+                        <label for="price">Type Range </label>
+                        <input
+                            type="range"
+                            name="price"
+                            id="price"
+                            min="50000"
+                            max="500000"
+                            step="100"
+                            value="250000"
+                        />
+                        <output class="price-output" for="price"></output>
+                    </li>
+
+                    <li>
+                        <label for="age">Type Numer with step=2</label>
+                        <input
+                            type="number"
+                            value="1"
+                            name="age"
+                            id="age"
+                            min="1"
+                            max="10"
+                            step="2"
+                        />
+                    </li>
+                </ul>
+            </section>
+            <!-- ============================================================-->
+            <section>
+                <h2>Date Inputs</h2>
+                <ul>
+                    <li>
+                      <label for="date">date</label>
+                      <input type="date" min="2013-06-01" max="2013-08-31" step="7" id="date" name="date" />
+                    </li>
+                   
+                    <li>
+                      <label for="date-today">Date from today</label>
+                      <input type="date" id="date-today" name="date-today" />
+                      <p>Today is <span id="show-today"></span></p>
+                    </li>
+                    
+
+
+                    <li>
+                      <label for="datetime-local">datetime-local</label>
+                      <input type="datetime-local" id="datetime-local" name="datetime-local" />
+                    </li>
+                    <li><label for="month">month</label>
+                    <input type="month" id="month" name="month" />
+                    </li>
+                    <li><label for="time">time</label>
+                    <input type="time" id="time" name="time" />
+                    </li>
+                    <li><label for="week">week</label>
+                    <input type="week" id="week" name="week" />
+                    </li>
+                    
+                </ul>
+            </section>
+
+            <section>
+                <h2>Kontakt Info</h2>
+                <ul class="main-form">
+                    <li>
+                        <label for="vorname"
+                            >Vorname:
+                            <abbr title="required" aria-label="required"
+                                >*</abbr
+                            ></label
+                        >
+                        <input type="text" name="vorname" id="vorname" />
+                    </li>
+                    <li>
+                        <label for="name">Name:</label>
+                        <input
+                            type="text"
+                            required="required"
+                            name="name"
+                            id="name"
+                        />
+                    </li>
+                    <li>
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" />
+                    </li>
+                    <li>
+                        <label for="tel">Telefonnummer:</label>
+                        <input type="tel" name="tel" id="tel" />
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <button type="submit">Reservieren</button>
+            </section>
+        </form>
+
+        <script src="test.js"></script>
+    </body>
+</html>

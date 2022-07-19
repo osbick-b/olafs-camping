@@ -18,13 +18,13 @@
                 <input type="date" id="abreise" name="abreise" required="required" />
                 </li>
                 <li><label for="nErwachs">Anzahl Erwachsene</label>
-                <input type="number" id="nErwachs" name="nErwachs" value="1" required="required" />
+                <input type="number" min="1" max="99" id="nErwachs" name="nErwachs" value="1" required="required" />
                 </li>
                 <li><label for="nKind">Anzahl Kinder</label>
-                <input type="number" id="nKind" name="nKind"  value="0"/>
+                <input type="number" min="0" max="99" id="nKind" name="nKind"  value="0"/>
                 </li>
                 <li><label for="nHund">Anzahl Hunde</label>
-                <input type="number" id="nHund" name="nHund"  value="0"/>
+                <input type="number" min="0" max="10" id="nHund" name="nHund"  value="0"/>
                 </li>
                 <li><label for="nZelt">Zelt</label>
                 <input type="number" id="nZelt" name="nZelt"  value="0" />
