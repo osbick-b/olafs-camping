@@ -25,11 +25,11 @@ const dateOffset =
 
 
 // --- Date offset fn
-function addDays(numDays = 0, date = new Date()) {
-    const dateCopy = new Date(date.getTime()); // -- you gotta create a copy, otherwise it mutates the original Date object (today)
-    // console.log(`date`, date);
+function addDays(numDays = today = new Date()) {
+    const dateCopy = new Date(today.getTime()); // -- you gotta create a copy, otherwise it mutates the original Date object (today)
+    // console.log(`today`, today);
     dateCopy.setDate(dateCopy.getDate() + numDays); // ! -- this alters the value of _date_
-    // console.log(`date AFTER`, date);
+    // console.log(`today AFTER`, today);
     return dateCopy;
 }
 // --- RES --- JS Date thing https://bobbyhadz.com/blog/javascript-date-add-weeks
