@@ -1,3 +1,18 @@
+// import preiseList from "./preise.json" assert {type:"json"};
+
+// =============================================================================
+//! --- Temporary solution, wont create virtual server just now
+const preis = {
+    erwachsen: 11,
+    kind: 7,
+    hund: 1.5,
+    zelt: 3,
+    kfz: 3,
+    wohnomobil: 5,
+    motorrad: 2,
+};
+// =============================================================================
+
 const anreise = document.querySelector("#anreise");
 const abreise = document.querySelector("#abreise");
 const dauer = document.querySelector("#dauer");
@@ -8,6 +23,18 @@ let abrDate;
 
 setInitialValues();
 
+// =============================================================================
+
+// PRICES ETC
+
+
+
+
+
+
+
+// =============================================================================
+// EVENT LISTENERS
 // =============================================================================
 
 anreise.addEventListener("input", () => {
@@ -30,11 +57,23 @@ abreise.addEventListener("input", () => {
 // console.log(`anrDate`, anrDate);
 // console.log(`abrDate`, abrDate);
 
+// =============================================================================
+
+
+
 
 
 // =============================================================================
 // FUNCTIONS
 // =============================================================================
+
+// FOR PRICE CALCULATION
+
+
+// =============================================================================
+
+// FOR DATES AND SO
+
 //* --- Initial values: Date obj format has to be converted to 2022-07-01 format for use in HTML side
 function setInitialValues() {
     anreise.value = htmlDateFormat(today);
