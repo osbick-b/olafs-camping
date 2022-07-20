@@ -19,25 +19,25 @@
                 </li>
                 <li><p>Lenght of stay is <span id="dauer" ></span> days.</p></li>
                 <li><label for="nErwachs">Anzahl Erwachsene</label>
-                <input type="number" min="1" max="99" id="nErwachs" name="nErwachs" value="1" data-price="" required="required" />
+                <input type="number" min="1" max="99" id="nErwachs" name="nErwachs" class="people" data-preis-type="variable" value="1" data-price="" required="required" />
                 </li>
                 <li><label for="nKind">Anzahl Kinder</label>
-                <input type="number" min="0" max="99" id="nKind" name="nKind"  value="0"/>
+                <input type="number" min="0" max="99" id="nKind" name="nKind" class="people" data-preis-type="variable" value="0"/>
                 </li>
                 <li><label for="nHund">Anzahl Hunde</label>
-                <input type="number" min="0" max="10" id="nHund" name="nHund"  value="0"/>
+                <input type="number" min="0" max="10" id="nHund" name="nHund" class="item" data-preis-type="fixed" value="0"/>
                 </li>
                 <li><label for="nZelt">Zelt</label>
-                <input type="number" id="nZelt" name="nZelt"  value="0" />
+                <input type="number" id="nZelt" name="nZelt" class="item" data-preis-type="fixed" value="0" />
                 </li>
                 <li><label for="nWohnwag">Wohnmobil/Wohnwagen</label>
-                <input type="number" id="nWohnwag" name="nWohnwag" value="0" />
+                <input type="number" id="nWohnwag" name="nWohnwag" class="item" data-preis-type="fixed" value="0" />
                 </li>
                 <li><label for="nKFZ">KFZ</label>
-                <input type="number" id="nKFZ" name="nKFZ" value="0" />
+                <input type="number" id="nKFZ" name="nKFZ" class="item" data-preis-type="fixed" value="0" />
                 </li>
                 <li><label for="nMotorrad">Motorrad</label>
-                <input type="number" id="nMotorrad" name="nMotorrad" value="0" />
+                <input type="number" id="nMotorrad" name="nMotorrad" class="item" data-preis-type="fixed" value="0" />
                 </li>
                 <li><p>Preise: <span id="summe"></span></p></li>
             </ol>

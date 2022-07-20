@@ -24,6 +24,13 @@ let abrDate;
 setInitialValues();
 
 // =============================================================================
+// PRICES VARIABLES
+
+const preisVariable = document.querySelectorAll("input.people");
+const preisFixed = document.querySelectorAll("input.item");
+console.log(`preisVariable`, preisVariable);
+console.log(`preisFixed`, preisFixed);
+// =============================================================================
 
 // PRICES ETC
 
