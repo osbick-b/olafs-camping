@@ -3,52 +3,47 @@ const abreise = document.querySelector("#abreise");
 const dauer = document.querySelector("#dauer");
 
 const today = new Date();
-const tomorrow = getNextDay(today);
+let anrDate;
+let abrDate;
 
+setInitialValues();
 
-//* --- Initial values:
-//* Date obj format has to be converted to 2022-07-01 format for use in HTML side
-anreise.value = today.toISOString().split("T")[0];
-abreise.value = tomorrow.toISOString().split("T")[0];
-// console.log(`anreise.value`, anreise.value);
-// console.log(`today`, today);
-// console.log(`tomorrow`, tomorrow);
 // =============================================================================
 
-let anrDate = new Date(anreise.value);
-let abrDate = new Date(abreise.value);
-dauer.textContent = getDauerTage();
-
 anreise.addEventListener("input", () => {
-    console.log(`INPUT >>> anreise.value`, anreise.value);
     anrDate = new Date(anreise.value);
-    console.log(`INPUT >>> anrDate`, anrDate);
-    if (abreise.value <= anreise.value) { 
-        console.log("NEGATIVE DATE!!!!");
-        updateAbreise(anreise); //TODO -- add conditional updating. you just want to redefine if abreise is invalid
-    }
-    // abreise.value = getNextDay(anreise.value).toISOString().split("T")[0];
+    dateValidation(anreise.value, abreise.value) || updateAbreise(anreise); // has to be with values bc if input vals are not valid, they shouldnt be passed onto the variable
+    // console.log(`INPUT >>> anrDate`, anrDate);
     dauer.textContent = getDauerTage();
     return anrDate;
 });
 
 abreise.addEventListener("input", () => {
-    console.log(`INPUT >>> abreise.value`, abreise.value);
-    abrDate = new Date(abreise.value);
-    if (abreise.value <= anreise.value) { console.log("NEGATIVE DATE!!!!");}
+    dateValidation(anreise.value, abreise.value)
+        ? (abrDate = new Date(abreise.value))
+        : updateAbreise(anreise);
+    // console.log(`INPUT >>> abrDate`, abrDate);
     dauer.textContent = getDauerTage();
-    console.log(`INPUT >>> abrDate`, abrDate);
     return abrDate;
 });
 
-console.log(`anrDate`, anrDate);
-console.log(`abrDate`, abrDate);
+// console.log(`anrDate`, anrDate);
+// console.log(`abrDate`, abrDate);
 
 
 
 // =============================================================================
 // FUNCTIONS
 // =============================================================================
+//* --- Initial values: Date obj format has to be converted to 2022-07-01 format for use in HTML side
+function setInitialValues() {
+    anreise.value = htmlDateFormat(today);
+    updateAbreise(anreise);
+    anreise.min = htmlDateFormat(today);
+    anrDate = new Date(anreise.value);
+    dauer.textContent = getDauerTage();
+}
+
 function getNextDay(day, distance = 1) {
     if (typeof(day) !== "object") {
         day = new Date(day);
@@ -67,12 +62,19 @@ function getDauerTage() {
 }
 
 function updateAbreise(anreise) {
-    abreise.value = getNextDay(anreise.value).toISOString().split("T")[0];
+    abreise.value = htmlDateFormat(getNextDay(anreise.value));
+    abreise.min = htmlDateFormat(getNextDay(anreise.value));
     abrDate = new Date(abreise.value);
+    // console.log(`UPD ABR >> abrDate`, abrDate);
 }
 
-function dateValidation() {
-    
+function dateValidation(iniDate, endDate) {
+    endDate >= iniDate? console.log("valid ✅"): console.log("not valid ⛔");
+    return endDate >= iniDate;
+}
+
+function htmlDateFormat(date) {
+    return date.toISOString().split("T")[0];
 }
 
 // =============================================================================
