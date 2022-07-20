@@ -23,7 +23,10 @@ anreise.addEventListener("input", () => {
     console.log(`INPUT >>> anreise.value`, anreise.value);
     anrDate = new Date(anreise.value);
     console.log(`INPUT >>> anrDate`, anrDate);
-    updateAbreise(anreise); //TODO -- add conditional updating. you just want to redefine if abreise is invalid
+    if (abreise.value <= anreise.value) { 
+        console.log("NEGATIVE DATE!!!!");
+        updateAbreise(anreise); //TODO -- add conditional updating. you just want to redefine if abreise is invalid
+    }
     // abreise.value = getNextDay(anreise.value).toISOString().split("T")[0];
     dauer.textContent = getDauerTage();
     return anrDate;
@@ -32,6 +35,7 @@ anreise.addEventListener("input", () => {
 abreise.addEventListener("input", () => {
     console.log(`INPUT >>> abreise.value`, abreise.value);
     abrDate = new Date(abreise.value);
+    if (abreise.value <= anreise.value) { console.log("NEGATIVE DATE!!!!");}
     dauer.textContent = getDauerTage();
     console.log(`INPUT >>> abrDate`, abrDate);
     return abrDate;
@@ -65,6 +69,10 @@ function getDauerTage() {
 function updateAbreise(anreise) {
     abreise.value = getNextDay(anreise.value).toISOString().split("T")[0];
     abrDate = new Date(abreise.value);
+}
+
+function dateValidation() {
+    
 }
 
 // =============================================================================
