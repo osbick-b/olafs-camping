@@ -30,6 +30,7 @@ let abrDate;
 
 const itemsReservAll = document.querySelectorAll("input.itemReserv");
 const summeDispl = document.querySelector("#summeDispl");
+const summeInput = document.querySelector("#summe");
 
 console.log(`itemsReservAll`, itemsReservAll);
 
@@ -48,22 +49,22 @@ function calcDiscount(typePerson, days) {
 }
 
 function calcTotal() {
-let summe =0;
+    console.log(">> CALC TOTAL");
+let summe = 0;
+let dauerLength = getStayLength();
+console.log(`dauerLength`, dauerLength);
     itemsReservAll.forEach((item) => {
-        let itemTotal = item.value * preisList[item.name];
+        let itemTotal = item.value * preisList[item.name] * dauerLength;
         summe += itemTotal;
-        console.log(
-            item.name,
-            `preis ${preisList[item.name]} = itemTotal ${itemTotal}`
-        );
-        console.log(`summe`, summe);
+        // console.log(
+        //     item.name,
+        //     `preis ${preisList[item.name]} = itemTotal ${itemTotal}`
+        // );
     });
+    summeInput.value = summe;
     summeDispl.textContent = summe;
     return summe;
 }
-
-
-calcTotal();
 
 // =============================================================================
 // EVENT LISTENERS
@@ -71,19 +72,20 @@ calcTotal();
 // PRICES
 itemsReservAll.forEach((item) => {
     item.addEventListener("input", ({target}) => {
-        console.log(
+        console.log(">> input changed",
             target.name,
             target.value,
             " preis je >",
             preisList[target.name]
         );
-
-
-        summeDispl.textContent = "input changed";
-        console.log(target.name, " preis insgesamt >", target.value*preisList[target.name]);
+        console.log(
+            target.name,
+            " preis insgesamt >",
+            target.value * preisList[target.name]
+        );
         calcTotal();
+        
     });
-
 });
 
 // !=============================================================================
@@ -97,6 +99,7 @@ anreise.addEventListener("input", () => {
         updateAbreise(anreise);
     }
     dauer.textContent = getStayLength();
+    calcTotal();
     return anrDate;
 });
 
@@ -106,6 +109,7 @@ abreise.addEventListener("input", () => {
         : updateAbreise(anreise);
     // console.log(`INPUT >>> abrDate`, abrDate);
     dauer.textContent = getStayLength();
+    calcTotal();
     return abrDate;
 });
 
@@ -138,8 +142,11 @@ function setInitialValues() {
     dauer.textContent = getStayLength();
     //Preise
     itemsReservAll.forEach((item) => {
-        item.name === "erwachsen"? item.value=1 : item.value=0;
+        item.min = item.min || 0;
+        item.value=item.min;
+        // item.name === "erwachsen"? item.value=1 : item.value=0;
     });
+    calcTotal();
 }
 
 function getNextDay(day, distance = 1) {
