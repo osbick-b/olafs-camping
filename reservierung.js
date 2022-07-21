@@ -2,7 +2,7 @@
 
 // =============================================================================
 //! --- Temporary solution, wont create virtual server just now
-const preis = {
+const preisList = {
     erwachsen: 11,
     kind: 7,
     hund: 1.5,
@@ -11,7 +11,12 @@ const preis = {
     wohnomobil: 5,
     motorrad: 2,
 };
+
+const conditions = {
+    maxStayLength: 99 // in days
+};
 // =============================================================================
+// DATES VARIABLES
 
 const anreise = document.querySelector("#anreise");
 const abreise = document.querySelector("#abreise");
@@ -20,35 +25,78 @@ const dauer = document.querySelector("#dauer");
 const today = new Date();
 let anrDate;
 let abrDate;
+// =============================================================================
+// PRICES VARIABLES
+
+const itemsReservAll = document.querySelectorAll("input.itemReserv");
+const summeDispl = document.querySelector("#summeDispl");
+
+console.log(`itemsReservAll`, itemsReservAll);
+
+// =============================================================================
+// INITIALIZATION FUNCTIONS
 
 setInitialValues();
 
 // =============================================================================
-// PRICES VARIABLES
-
-const preisVariable = document.querySelectorAll("input.people");
-const preisFixed = document.querySelectorAll("input.item");
-console.log(`preisVariable`, preisVariable);
-console.log(`preisFixed`, preisFixed);
-// =============================================================================
-
+//! =============================================================================
 // PRICES ETC
 
+//FNS
+function calcDiscount(typePerson, days) {
+
+}
+
+function calcTotal() {
+let summe =0;
+    itemsReservAll.forEach((item) => {
+        let itemTotal = item.value * preisList[item.name];
+        summe += itemTotal;
+        console.log(
+            item.name,
+            `preis ${preisList[item.name]} = itemTotal ${itemTotal}`
+        );
+        console.log(`summe`, summe);
+    });
+    summeDispl.textContent = summe;
+    return summe;
+}
 
 
-
-
-
+calcTotal();
 
 // =============================================================================
 // EVENT LISTENERS
 // =============================================================================
+// PRICES
+itemsReservAll.forEach((item) => {
+    item.addEventListener("input", ({target}) => {
+        console.log(
+            target.name,
+            target.value,
+            " preis je >",
+            preisList[target.name]
+        );
+
+
+        summeDispl.textContent = "input changed";
+        console.log(target.name, " preis insgesamt >", target.value*preisList[target.name]);
+        calcTotal();
+    });
+
+});
+
+// !=============================================================================
+
+// =============================================================================
+//DATES
 
 anreise.addEventListener("input", () => {
     anrDate = new Date(anreise.value);
-    dateValidation(anreise.value, abreise.value) || updateAbreise(anreise); // has to be with values bc if input vals are not valid, they shouldnt be passed onto the variable
-    // console.log(`INPUT >>> anrDate`, anrDate);
-    dauer.textContent = getDauerTage();
+    while (!dateValidation(anreise.value, abreise.value)) {
+        updateAbreise(anreise);
+    }
+    dauer.textContent = getStayLength();
     return anrDate;
 });
 
@@ -57,7 +105,7 @@ abreise.addEventListener("input", () => {
         ? (abrDate = new Date(abreise.value))
         : updateAbreise(anreise);
     // console.log(`INPUT >>> abrDate`, abrDate);
-    dauer.textContent = getDauerTage();
+    dauer.textContent = getStayLength();
     return abrDate;
 });
 
@@ -73,21 +121,25 @@ abreise.addEventListener("input", () => {
 // =============================================================================
 // FUNCTIONS
 // =============================================================================
-
 // FOR PRICE CALCULATION
 
 
 // =============================================================================
-
 // FOR DATES AND SO
 
 //* --- Initial values: Date obj format has to be converted to 2022-07-01 format for use in HTML side
 function setInitialValues() {
+    console.log(">> SET INITIAL VALUES");
+    //Dates
     anreise.value = htmlDateFormat(today);
     updateAbreise(anreise);
     anreise.min = htmlDateFormat(today);
     anrDate = new Date(anreise.value);
-    dauer.textContent = getDauerTage();
+    dauer.textContent = getStayLength();
+    //Preise
+    itemsReservAll.forEach((item) => {
+        item.name === "erwachsen"? item.value=1 : item.value=0;
+    });
 }
 
 function getNextDay(day, distance = 1) {
@@ -100,10 +152,10 @@ function getNextDay(day, distance = 1) {
 }
 
 // Generic version of fn:
-// function getDauerTage(iniDate, endDate) {
+// function getStayLength(iniDate, endDate) {
 //     return Math.ceil((endDate.getTime() - iniDate.getTime()) / (1000 * 3600 * 24)); // difference abreise-anreise convert from ms to days
 // }
-function getDauerTage() {
+function getStayLength() {
     return Math.ceil((abrDate.getTime() - anrDate.getTime()) / (1000 * 3600 * 24)); // difference abreise-anreise convert from ms to days
 }
 
@@ -115,8 +167,8 @@ function updateAbreise(anreise) {
 }
 
 function dateValidation(iniDate, endDate) {
-    endDate >= iniDate? console.log("valid ✅"): console.log("not valid ⛔");
-    return endDate >= iniDate;
+    endDate > iniDate? console.log("valid ✅"): console.log("not valid ⛔");
+    return endDate > iniDate;
 }
 
 function htmlDateFormat(date) {
