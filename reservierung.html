@@ -19,33 +19,35 @@
                 </li>
                 <li><p>Lenght of stay is <span id="dauer" ></span> days.</p></li>
                 <li><label for="erwachsen">Anzahl Erwachsene</label>
-                <input type="number" min="1" max="99" id="erwachsen" name="erwachsen" class="itemReserv" data-preis-type="variable" data-price="" required="required" />
+                <input type="number" min="1" max="99" id="erwachsen" name="erwachsen" class="itemReserv" data-has-discount="discount" required="required" />
                 </li>
                 <li><label for="kind">Anzahl Kinder</label>
-                <input type="number" min="0" max="99" id="kind" name="kind" class="itemReserv" data-preis-type="variable" >
+                <input type="number" min="0" max="99" id="kind" name="kind" class="itemReserv" data-has-discount="discount"/>
                 </li>
                 <li><label for="hund">Anzahl Hunde</label>
-                <input type="number" min="0" max="10" id="hund" name="hund" class="itemReserv" data-preis-type="fixed" >
+                <input type="number" min="0" max="10" id="hund" name="hund" class="itemReserv"/>
                 </li>
                 <li><label for="zelt">Zelt</label>
-                <input type="number" id="zelt" name="zelt" class="itemReserv" data-preis-type="fixed" />
+                <input type="number" id="zelt" name="zelt" class="itemReserv"/>
                 </li>
                 <li><label for="wohnomobil">Wohnmobil/Wohnwagen</label>
-                <input type="number" id="wohnomobil" name="wohnomobil" class="itemReserv" data-preis-type="fixed" />
+                <input type="number" id="wohnomobil" name="wohnomobil" class="itemReserv"/>
                 </li>
                 <li><label for="kfz">KFZ</label>
-                <input type="number" id="kfz" name="kfz" class="itemReserv" data-preis-type="fixed" />
+                <input type="number" id="kfz" name="kfz" class="itemReserv"/>
                 </li>
                 <li><label for="motorrad">Motorrad</label>
-                <input type="number" id="motorrad" name="motorrad" class="itemReserv" data-preis-type="fixed" />
+                <input type="number" id="motorrad" name="motorrad" class="itemReserv"/>
                 </li>
-                <li>
-                  <p>Summe: <span id="summeDispl"></span></p>
-                  <input type="number" readonly id="summe" name="summe" />
-                  <!-- EDIT BACK TO HIDDEN -- just for visibility -->
-                  <!-- <input type="hidden" readonly id="summe" name="summe" /> -->
-                </li>
+                
             </ol>
+        </section>
+        <section id="summary">
+            <ul id="preview"></ul>
+            <p>Summe: <span id="summeDispl"></span></p>
+            <!-- <input type="number" readonly id="summe" name="summe" /> -->
+            <!-- EDIT BACK TO HIDDEN -- just for visibility -->
+            <input type="hidden" readonly id="summe" name="summe" />
         </section>
         <section>
             <button type="submit">Reservieren</button>

@@ -44,26 +44,64 @@ setInitialValues();
 // PRICES ETC
 
 //FNS
-function calcDiscount(typePerson, days) {
-
+function calcDiscount(item, days) {
+    console.log(">> CALC DISCOUNT", item.name, days);
+    let itemPrice;
+    if (days === 1) {
+        itemPrice = preisList[item.name];
+    } else if (days === 2) {
+        itemPrice = preisList[item.name] - 1;
+    } else if (days >= 3) {
+        itemPrice = preisList[item.name] - 2;
+    }
+    return itemPrice;
 }
 
 function calcTotal() {
+    clearPreview();
     console.log(">> CALC TOTAL");
+    document.querySelector("#preview").textContent = "";
 let summe = 0;
 let dauerLength = getStayLength();
-console.log(`dauerLength`, dauerLength);
+// console.log(`dauerLength`, dauerLength);
     itemsReservAll.forEach((item) => {
-        let itemTotal = item.value * preisList[item.name] * dauerLength;
+        if (item.value == 0) {return;} 
+        let itemPrice;
+        if (item.dataset.hasDiscount) {
+            itemPrice = calcDiscount(item, dauerLength);
+        } else {
+            itemPrice = preisList[item.name];
+        }
+        let itemTotal = item.value * itemPrice * dauerLength;
         summe += itemTotal;
-        // console.log(
-        //     item.name,
-        //     `preis ${preisList[item.name]} = itemTotal ${itemTotal}`
-        // );
+previewReservation(item, itemPrice, itemTotal);
     });
     summeInput.value = summe;
     summeDispl.textContent = summe;
     return summe;
+}
+
+function previewReservation(item, itemPrice, itemTotal) {
+    // Preview Reservation
+    const li = document.createElement("li");
+    const itemSummary = document.createTextNode(
+        `${
+            item.value
+        } x ${item.name.toUpperCase()} (${itemPrice} eur) = ${itemTotal} eur`
+    );
+    li.appendChild(itemSummary);
+    document.querySelector("#preview").appendChild(li);
+}
+
+function clearPreview() {
+    console.log(">> CLEAR PREVIEW");
+    const summary = document.querySelector("section#summary");
+    const oldPreview = document.querySelector("#preview");
+    // console.log(`oldPreview`, oldPreview.childNodes);
+    oldPreview.remove();
+    const newPreview = document.createElement("ul");
+    newPreview.id = "preview";
+    summary.insertBefore(newPreview, summary.children[0]);
 }
 
 // =============================================================================
@@ -73,15 +111,7 @@ console.log(`dauerLength`, dauerLength);
 itemsReservAll.forEach((item) => {
     item.addEventListener("input", ({target}) => {
         console.log(">> input changed",
-            target.name,
-            target.value,
-            " preis je >",
-            preisList[target.name]
-        );
-        console.log(
-            target.name,
-            " preis insgesamt >",
-            target.value * preisList[target.name]
+            target.name
         );
         calcTotal();
         
