@@ -87,9 +87,13 @@ function previewReservation(item, itemPrice, itemTotal) {
     const itemSummary = document.createTextNode(
         `${
             item.value
-        } x ${item.name.toUpperCase()} (${itemPrice} eur) = ${itemTotal} eur`
+        } x ${item.name.toUpperCase()} (${itemPrice} eur) --- `
     );
+    const span = document.createElement("span");
+    span.className = "item-total";
+    span.textContent = `${itemTotal} eur`;
     li.appendChild(itemSummary);
+    li.appendChild(span);
     document.querySelector("#preview").appendChild(li);
 }
 
