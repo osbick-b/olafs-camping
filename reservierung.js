@@ -91,7 +91,7 @@ function calcDiscount(item, days) {
 }
 
 function calcTotal() {
-    clearPreview();
+    clearSummary();
     console.log(">> CALC TOTAL");
     let summe = 0;
     let dauerLength = getStayLength();
@@ -105,14 +105,14 @@ function calcTotal() {
             : preisList[item.name];
         let itemTotal = item.value * itemPrice * dauerLength;
         summe += itemTotal;
-        previewReservation(item, itemPrice, itemTotal);
+        overviewReservation(item, itemPrice, itemTotal);
     });
     summeInput.value = summe;
     summeDispl.textContent = summe;
     return summe;
 }
 
-function previewReservation(item, itemPrice, itemTotal) {
+function overviewReservation(item, itemPrice, itemTotal) {
     const li = document.createElement("li");
     const itemSummary = document.createTextNode(
         `${item.value} x ${item.name.toUpperCase()} (${itemPrice} eur) --- `
@@ -122,16 +122,16 @@ function previewReservation(item, itemPrice, itemTotal) {
     span.textContent = `${itemTotal} eur`;
     li.appendChild(itemSummary);
     li.appendChild(span);
-    document.querySelector("#preview").appendChild(li);
+    document.querySelector("#summary").appendChild(li);
 }
 
-function clearPreview() {
+function clearSummary() {
     // console.log(">> CLEAR PREVIEW");
-    const summary = document.querySelector("section#summary");
-    document.querySelector("#preview").remove();
-    const newPreview = document.createElement("ul");
-    newPreview.id = "preview";
-    summary.insertBefore(newPreview, summary.children[1]); // insert after section title
+    const overview = document.querySelector("section.overview");
+    document.querySelector("#summary").remove();
+    const newSummary = document.createElement("ul");
+    newSummary.id = "summary";
+    overview.insertBefore(newSummary, overview.children[1]); // insert after section title
 }
 
 // =============================================================================

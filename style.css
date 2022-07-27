@@ -64,7 +64,7 @@ label {
 }
 
 input:focus {
-    border-color: #1b6d1d;
+    border-color: hotpink;
 }
 
 form button {
