@@ -25,6 +25,7 @@ const dauer = document.querySelector("#dauer");
 const today = new Date();
 let anrDate;
 let abrDate;
+
 // =============================================================================
 // PRICES VARIABLES
 
@@ -36,77 +37,8 @@ console.log(`itemsReservAll`, itemsReservAll);
 
 // =============================================================================
 // INITIALIZATION FUNCTIONS
-
-setInitialValues();
-
 // =============================================================================
-//! =============================================================================
-// PRICES ETC
-
-//FNS
-function calcDiscount(item, days) {
-    console.log(">> CALC DISCOUNT", item.name, days);
-    let itemPrice;
-    if (days === 1) {
-        itemPrice = preisList[item.name];
-    } else if (days === 2) {
-        itemPrice = preisList[item.name] - 1;
-    } else if (days >= 3) {
-        itemPrice = preisList[item.name] - 2;
-    }
-    return itemPrice;
-}
-
-function calcTotal() {
-    clearPreview();
-    console.log(">> CALC TOTAL");
-    document.querySelector("#preview").textContent = "";
-let summe = 0;
-let dauerLength = getStayLength();
-// console.log(`dauerLength`, dauerLength);
-    itemsReservAll.forEach((item) => {
-        if (item.value == 0) {return;} 
-        let itemPrice;
-        if (item.dataset.hasDiscount) {
-            itemPrice = calcDiscount(item, dauerLength);
-        } else {
-            itemPrice = preisList[item.name];
-        }
-        let itemTotal = item.value * itemPrice * dauerLength;
-        summe += itemTotal;
-previewReservation(item, itemPrice, itemTotal);
-    });
-    summeInput.value = summe;
-    summeDispl.textContent = summe;
-    return summe;
-}
-
-function previewReservation(item, itemPrice, itemTotal) {
-    // Preview Reservation
-    const li = document.createElement("li");
-    const itemSummary = document.createTextNode(
-        `${
-            item.value
-        } x ${item.name.toUpperCase()} (${itemPrice} eur) --- `
-    );
-    const span = document.createElement("span");
-    span.className = "item-total";
-    span.textContent = `${itemTotal} eur`;
-    li.appendChild(itemSummary);
-    li.appendChild(span);
-    document.querySelector("#preview").appendChild(li);
-}
-
-function clearPreview() {
-    console.log(">> CLEAR PREVIEW");
-    const summary = document.querySelector("section#summary");
-    const oldPreview = document.querySelector("#preview");
-    // console.log(`oldPreview`, oldPreview.childNodes);
-    oldPreview.remove();
-    const newPreview = document.createElement("ul");
-    newPreview.id = "preview";
-    summary.insertBefore(newPreview, summary.children[0]);
-}
+setInitialValues();
 
 // =============================================================================
 // EVENT LISTENERS
@@ -114,19 +46,12 @@ function clearPreview() {
 // PRICES
 itemsReservAll.forEach((item) => {
     item.addEventListener("input", ({target}) => {
-        console.log(">> input changed",
-            target.name
-        );
         calcTotal();
-        
     });
 });
 
-// !=============================================================================
-
 // =============================================================================
 //DATES
-
 anreise.addEventListener("input", () => {
     anrDate = new Date(anreise.value);
     while (!dateValidation(anreise.value, abreise.value)) {
@@ -147,20 +72,67 @@ abreise.addEventListener("input", () => {
     return abrDate;
 });
 
-// console.log(`anrDate`, anrDate);
-// console.log(`abrDate`, abrDate);
-
-// =============================================================================
-
-
-
-
-
 // =============================================================================
 // FUNCTIONS
 // =============================================================================
 // FOR PRICE CALCULATION
 
+function calcDiscount(item, days) {
+    console.log(">> CALC DISCOUNT", item.name, days);
+    let itemPrice;
+    if (days === 1) {
+        itemPrice = preisList[item.name];
+    } else if (days === 2) {
+        itemPrice = preisList[item.name] - 1;
+    } else if (days >= 3) {
+        itemPrice = preisList[item.name] - 2;
+    }
+    return itemPrice;
+}
+
+function calcTotal() {
+    clearPreview();
+    console.log(">> CALC TOTAL");
+    let summe = 0;
+    let dauerLength = getStayLength();
+    itemsReservAll.forEach((item) => {
+        if (item.value == 0) {
+            return;
+        }
+        let itemPrice;
+        itemPrice = item.dataset.hasDiscount
+            ? calcDiscount(item, dauerLength)
+            : preisList[item.name];
+        let itemTotal = item.value * itemPrice * dauerLength;
+        summe += itemTotal;
+        previewReservation(item, itemPrice, itemTotal);
+    });
+    summeInput.value = summe;
+    summeDispl.textContent = summe;
+    return summe;
+}
+
+function previewReservation(item, itemPrice, itemTotal) {
+    const li = document.createElement("li");
+    const itemSummary = document.createTextNode(
+        `${item.value} x ${item.name.toUpperCase()} (${itemPrice} eur) --- `
+    );
+    const span = document.createElement("span");
+    span.className = "item-total";
+    span.textContent = `${itemTotal} eur`;
+    li.appendChild(itemSummary);
+    li.appendChild(span);
+    document.querySelector("#preview").appendChild(li);
+}
+
+function clearPreview() {
+    // console.log(">> CLEAR PREVIEW");
+    const summary = document.querySelector("section#summary");
+    document.querySelector("#preview").remove();
+    const newPreview = document.createElement("ul");
+    newPreview.id = "preview";
+    summary.insertBefore(newPreview, summary.children[1]); // insert after section title
+}
 
 // =============================================================================
 // FOR DATES AND SO
