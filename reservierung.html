@@ -7,16 +7,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@400;700&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reservierung.css">
     <title>Reservieren - Camping Kamern</title>
 </head>
 <body>
-    <form id="reservation" action="/reservieren" method="get">
+    <form id="reservation" action="/reservieren" method="post">
         <h1>Camping Kamern Reservieren</h1>
         <p>Required fields are followed by <abbr title="required">*</abbr></p>
         <section>
             <h2 class="section">Kontakt Info</h2>
-            <ul class="main-form">
+            <ol class="main-form" id="contact">
                     <li>
                         <label for="vorname">Vorname: <span aria-label="required">*</span></label>
                         <input type="text" name="vorname" id="vorname" required="required" />
@@ -31,20 +31,20 @@
                     </li>
                     <li>
                         <label for="telefonnummer">Telefonnummer:<span aria-label="required">*</span></label>
-                        <input type="number" name="telefonnummer" id="telefonnummer" required="required" />
+                        <input type="tel" name="telefonnummer" id="telefonnummer" required="required" />
                     </li>
-                </ul>
+                </ol>
         </section>
         <section>
             <h2 class="section">Reservierungs Info</h2>
             <ol class="main-form">
                 <h3 class="subsect">Dates</h3>
                 <li>
-                    <label for="anreise">Anreise</label>
+                    <label for="anreise">Anreise<span aria-label="required">*</span></label>
                     <input type="date" id="anreise" name="anreise" required="required" />
                 </li>
                 <li>
-                    <label for="abreise">Abreise</label>
+                    <label for="abreise">Abreise<span aria-label="required">*</span></label>
                     <input type="date" id="abreise" name="abreise" required="required" />
                 </li>
                 <li>
@@ -52,7 +52,7 @@
                 </li>
                 <h3 class="subsect">People</h3>
                 <li>
-                    <label for="erwachsen">Erwachsene</label>
+                    <label for="erwachsen">Erwachsene<span aria-label="required">*</span></label>
                     <input type="number" min="1" max="99" id="erwachsen" name="erwachsen" class="itemReserv" data-has-discount="discount" required="required" />
                 </li>
                 <li>

@@ -29,11 +29,13 @@ h1 {
 /* !===========================================================================*/
 /* VALIDATION TEST STYLES */
 :valid {
-    border: 5px solid  var(--light-green, #78be45);
+    color: var(--light-green, #78be45);
+    /* border: 5px solid  var(--light-green, #78be45); */
 }
 
-:invalid {
-    border: 5px solid crimson;
+input:invalid {
+    color: crimson;
+    /* border: 5px solid crimson; */
 }
 /* !===========================================================================*/
 
@@ -76,13 +78,8 @@ ul, ol {
     margin: 0;
 }
 
-ul.main-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-ul.main-form > li + li {
+ol.main-form > li + li {
     margin-top: 0.5em;
 }
 

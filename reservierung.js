@@ -16,6 +16,11 @@ const conditions = {
     maxStayLength: 99 // in days
 };
 // =============================================================================
+// CONTACT VARIABLES
+
+const itemsContactAll = document.querySelectorAll("ol#contact input");
+
+// =============================================================================
 // DATES VARIABLES
 
 const anreise = document.querySelector("#anreise");
@@ -46,7 +51,7 @@ setInitialValues();
 // PRICES
 itemsReservAll.forEach((item) => {
     item.addEventListener("input", ({target}) => {
-        calcTotal();
+        calcTotalPrice();
     });
 });
 
@@ -58,7 +63,7 @@ anreise.addEventListener("input", () => {
         updateAbreise(anreise);
     }
     dauer.textContent = getStayLength();
-    calcTotal();
+    calcTotalPrice();
     return anrDate;
 });
 
@@ -68,7 +73,7 @@ abreise.addEventListener("input", () => {
         : updateAbreise(anreise);
     // console.log(`INPUT >>> abrDate`, abrDate);
     dauer.textContent = getStayLength();
-    calcTotal();
+    calcTotalPrice();
     return abrDate;
 });
 
@@ -90,7 +95,7 @@ function calcDiscount(item, days) {
     return itemPrice;
 }
 
-function calcTotal() {
+function calcTotalPrice() {
     clearSummary();
     console.log(">> CALC TOTAL");
     let summe = 0;
@@ -131,7 +136,7 @@ function clearSummary() {
     document.querySelector("#summary").remove();
     const newSummary = document.createElement("ul");
     newSummary.id = "summary";
-    overview.insertBefore(newSummary, overview.children[1]); // insert after section title
+    overview.insertBefore(newSummary, overview.children[1]); // to insert summary after section title
 }
 
 // =============================================================================
@@ -140,6 +145,10 @@ function clearSummary() {
 //* --- Initial values: Date obj format has to be converted to 2022-07-01 format for use in HTML side
 function setInitialValues() {
     console.log(">> SET INITIAL VALUES");
+    //Contact
+    itemsContactAll.forEach((item) => {
+        item.value = item.value && "";
+    });
     //Dates
     anreise.value = htmlDateFormat(today);
     updateAbreise(anreise);
@@ -150,9 +159,8 @@ function setInitialValues() {
     itemsReservAll.forEach((item) => {
         item.min = item.min || 0;
         item.value=item.min;
-        // item.name === "erwachsen"? item.value=1 : item.value=0;
     });
-    calcTotal();
+    calcTotalPrice();
 }
 
 function getNextDay(day, distance = 1) {
@@ -176,11 +184,10 @@ function updateAbreise(anreise) {
     abreise.value = htmlDateFormat(getNextDay(anreise.value));
     abreise.min = htmlDateFormat(getNextDay(anreise.value));
     abrDate = new Date(abreise.value);
-    // console.log(`UPD ABR >> abrDate`, abrDate);
 }
 
 function dateValidation(iniDate, endDate) {
-    endDate > iniDate? console.log("valid ✅"): console.log("not valid ⛔");
+    endDate > iniDate? console.log("dates valid ✅"): console.log("dates not valid ⛔");
     return endDate > iniDate;
 }
 
