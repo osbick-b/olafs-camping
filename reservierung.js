@@ -38,7 +38,11 @@ const itemsReservAll = document.querySelectorAll("input.itemReserv");
 const summeDispl = document.querySelector("#summeDispl");
 const summeInput = document.querySelector("#summe");
 
-console.log(`itemsReservAll`, itemsReservAll);
+// =============================================================================
+// VALIDATION VARIABLES
+
+const btnSubmit = document.querySelector("#submit");
+const inputAll = document.querySelectorAll("input");
 
 // =============================================================================
 // INITIALIZATION FUNCTIONS
@@ -56,7 +60,7 @@ itemsReservAll.forEach((item) => {
 });
 
 // =============================================================================
-//DATES
+// DATES
 anreise.addEventListener("input", () => {
     anrDate = new Date(anreise.value);
     while (!dateValidation(anreise.value, abreise.value)) {
@@ -76,9 +80,36 @@ abreise.addEventListener("input", () => {
     calcTotalPrice();
     return abrDate;
 });
+// =============================================================================
+//!!! VALIDATION
+inputAll.forEach(inp => {
+        // inp.checkValidity() || console.log(inp.name, "⛔");
+         inp.addEventListener("blur" ,() => {
+            inp.className = inp.checkValidity() || "invalid";
+        });
+    });
+
+
+
 
 // =============================================================================
 // FUNCTIONS
+// =============================================================================
+//!!! FOR VALIDATION & SUBMIT
+function submitForm() {
+    // validateSubmit();
+    //TODO --- add screen to review reservation summary
+}
+
+// function validateSubmit() {
+//     console.log("==> CLICKED SUBMIT");
+//     inputAll.forEach((inp) => {
+//         // inp.checkValidity() || console.log(inp.name, "⛔");
+//         inp.className = inp.checkValidity() || "invalid";
+//     });
+// }
+
+
 // =============================================================================
 // FOR PRICE CALCULATION
 
@@ -113,7 +144,7 @@ function calcTotalPrice() {
         overviewReservation(item, itemPrice, itemTotal);
     });
     summeInput.value = summe;
-    summeDispl.textContent = summe;
+    summeDispl.textContent = summe + " eur";
     return summe;
 }
 

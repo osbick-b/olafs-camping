@@ -27,7 +27,7 @@ h1 {
 } */
 
 /* !===========================================================================*/
-/* VALIDATION TEST STYLES */
+/* VALIDATION STYLES */
 :valid {
     color: var(--light-green, #78be45);
     /* border: 5px solid  var(--light-green, #78be45); */
@@ -36,6 +36,11 @@ h1 {
 input:invalid {
     color: crimson;
     /* border: 5px solid crimson; */
+}
+
+input.invalid {
+/* .invalid { */
+    border: 5px solid crimson;
 }
 /* !===========================================================================*/
 
