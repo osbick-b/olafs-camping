@@ -96,7 +96,7 @@ inputAll.forEach(inp => {
 // FUNCTIONS
 // =============================================================================
 //!!! FOR VALIDATION & SUBMIT
-https: function submitForm() {
+function submitForm() {
     // validateSubmit();
     //TODO --- add screen to review reservation summary
 }
@@ -147,6 +147,9 @@ function calcTotalPrice() {
     summeDispl.textContent = summe + " eur";
     return summe;
 }
+
+// =============================================================================
+// FOR RENDERING RESERVATION OVERVIEW
 
 function overviewReservation(item, itemPrice, itemTotal) {
     const li = document.createElement("li");
