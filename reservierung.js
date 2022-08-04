@@ -172,28 +172,6 @@ function clearSummary() {
 
 // =============================================================================
 // FOR DATES AND SO
-
-//* --- Initial values: Date obj format has to be converted to 2022-07-01 format for use in HTML side
-function setInitialValues() {
-    console.log(">> SET INITIAL VALUES");
-    //Contact
-    itemsContactAll.forEach((item) => {
-        item.value = item.value && "";
-    });
-    //Dates
-    anreise.value = htmlDateFormat(today);
-    updateAbreise(anreise);
-    anreise.min = htmlDateFormat(today);
-    anrDate = new Date(anreise.value);
-    dauer.textContent = getStayLength();
-    //Preise
-    itemsReservAll.forEach((item) => {
-        item.min = item.min || 0;
-        item.value=item.min;
-    });
-    calcTotalPrice();
-}
-
 function getNextDay(day, distance = 1) {
     if (typeof(day) !== "object") {
         day = new Date(day);
@@ -226,4 +204,26 @@ function htmlDateFormat(date) {
     return date.toISOString().split("T")[0];
 }
 
+// =============================================================================
+// SET INITIAL VALUES
+//* --- Initial values: Date obj format has to be converted to 2022-07-01 format for use in HTML side
+function setInitialValues() {
+    console.log(">> SET INITIAL VALUES");
+    //Contact
+    itemsContactAll.forEach((item) => {
+        item.value = item.value && "";
+    });
+    //Dates
+    anreise.value = htmlDateFormat(today);
+    updateAbreise(anreise);
+    anreise.min = htmlDateFormat(today);
+    anrDate = new Date(anreise.value);
+    dauer.textContent = getStayLength();
+    //Preise
+    itemsReservAll.forEach((item) => {
+        item.min = item.min || 0;
+        item.value=item.min;
+    });
+    calcTotalPrice();
+}
 // =============================================================================

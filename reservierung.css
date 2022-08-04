@@ -5,7 +5,12 @@
     /* var(--dark-green, #1b6d1d); */
 }
 
+/* ===========================================================================*/
+/* Remove Default Styles */
+
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -14,6 +19,13 @@ body {
     font-family: "Catamaran", sans-serif;
 }
 
+ul, ol {
+    list-style: none;
+}
+
+/* =============================================================================
+|  HEADINGS
+============================================================================= */
 h1 {
     color: var(--dark-green, #1b6d1d);
     font-weight: 700;
@@ -21,13 +33,64 @@ h1 {
     font-family: "Oswald", sans-serif;
 }
 
-/* main {
-    width: 90vw;
-    margin: 0 auto;
-} */
+/* === Form Headings === */
+form h2.section {
+    text-transform: uppercase;
+    border-bottom: 1px solid;
+}
 
-/* !===========================================================================*/
-/* VALIDATION STYLES */
+form h3.subsect {
+    color:var(--dark-green, #1b6d1d);
+    font-weight: bold;
+    border-bottom: 1px solid var(--dark-green, #1b6d1d);
+}
+
+/* =============================================================================
+| ELEMENTS
+============================================================================= */
+.btn {
+    padding: 0.5em;
+}
+
+
+/* =============================================================================
+| FORM
+============================================================================= */
+/* === Structure === */
+form {
+    margin: 0 auto;
+    width: 70vw;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+}
+
+form section {
+    margin-bottom: 3em;
+}
+
+/* === Input === */
+input {
+    padding: 0.5em;
+}
+
+input:focus {
+    border-color: hotpink;
+}
+
+label {
+    display: block;
+}
+
+legend {
+    padding: 0 0.5em;
+}
+
+
+
+/* =============================================================================
+| VALIDATION STYLES
+============================================================================= */
 :valid {
     color: var(--light-green, #78be45);
     /* border: 5px solid  var(--light-green, #78be45); */
@@ -40,83 +103,4 @@ h1 {
 
 input.invalid {
     border: 5px solid crimson;
-}
-
-/* !===========================================================================*/
-
-/* =============================================================================
-| FORM
-============================================================================= */
-form {
-    margin: 0 auto;
-    width: 70vw;
-    padding: 1em;
-    border: 1px solid #ccc;
-    border-radius: 1em;
-}
-
-form section {
-    margin-bottom: 3em;
-
-}
-
-/* TITLES */
-form h3.subsect {
-    color:var(--dark-green, #1b6d1d);
-    font-weight: bold;
-    border-bottom: 1px solid var(--dark-green, #1b6d1d);
-}
-
-form h2.section {
-    text-transform: uppercase;
-    border-bottom: 1px solid;
-}
-
-input {
-    padding: 0.5em;
-}
-
-
-ul, ol {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-
-ol.main-form > li + li {
-    margin-top: 0.5em;
-}
-
-label {
-    display: block;
-}
-
-input:focus {
-    border-color: hotpink;
-}
-
-form button {
-    /* margin-left: 130px; same as label width */
-    margin-top: 1em;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    padding: 0.5em;
-    
-}
-
-legend {
-    padding: 0 0.5em;
-}
-
-fieldset li {
-    display: inline-block;
-}
-
-fieldset label {
-    display: inline-block;
-}
-
-fieldset li + li {
-    margin-left: 1em;
 }

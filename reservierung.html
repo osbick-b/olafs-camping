@@ -12,88 +12,118 @@
     <title>Reservieren - Camping Kamern</title>
 </head>
 <body>
-    <form id="reservation" action="/reservieren" method="post">
-        <h1>Camping Kamern Reservieren</h1>
-        <p>Required fields are followed by <abbr title="required">*</abbr></p>
-        <section>
-            <h2 class="section">Kontakt Info</h2>
-            <ol class="main-form" id="contact">
+    <div class="container">
+        <form id="reservation" action="/reservieren" method="post">
+            <h1>Camping Kamern Reservieren</h1>
+            <p>Required fields are followed by <abbr title="required">*</abbr></p>
+            <section>
+                <h2 class="section">Kontakt Info</h2>
+                <ol class="main-form" id="contact">
+                        <li>
+                            <label for="vorname">Vorname: <span aria-label="required">*</span></label>
+                            <!-- <i class="fa-solid fa-user"></i> -->
+                            <input type="text" name="vorname" id="vorname" required="required" />
+                            <i class="fas fa-exclamation-circle failure-icon"></i>
+                            <i class="far fa-check-circle success-icon"></i>
+                            <div class="error"></div>
+                        </li>
+                        <li>
+                            <label for="name">Name:<span aria-label="required">*</span></label>
+                            <!-- <i class="fa-solid fa-user"></i> -->
+                            <input type="text" name="name" id="name" required="required" />
+                            <i class="fas fa-exclamation-circle failure-icon"></i>
+                            <i class="far fa-check-circle success-icon"></i>
+                            <div class="error"></div>
+                        </li>
+                        <li>
+                            <label for="email">Email:<span aria-label="required">*</span></label>
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" name="email" id="email"  required="required" />
+                            <i class="fas fa-exclamation-circle failure-icon"></i>
+                            <i class="far fa-check-circle success-icon"></i>
+                            <div class="error"></div>
+                        </li>
+                        <li>
+                            <label for="telefonnummer">Telefonnummer:<span aria-label="required">*</span></label>
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" name="telefonnummer" id="telefonnummer" required="required" />
+                            <i class="fas fa-exclamation-circle failure-icon"></i>
+                            <i class="far fa-check-circle success-icon"></i>
+                            <div class="error"></div>
+                        </li>
+                    </ol>
+            </section>
+            <section>
+                <h2 class="section">Reservierungs Info</h2>
+                <h3 class="subsect">Dates</h3>
+                <ol class="inp-group">
                     <li>
-                        <label for="vorname">Vorname: <span aria-label="required">*</span></label>
-                        <input type="text" name="vorname" id="vorname" required="required" />
+                        <label for="anreise">Anreise<span aria-label="required">*</span></label>
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <input type="date" id="anreise" name="anreise" required="required" />
                     </li>
                     <li>
-                        <label for="name">Name:<span aria-label="required">*</span></label>
-                        <input type="text" name="name" id="name" required="required" />
+                        <label for="abreise">Abreise<span aria-label="required">*</span></label>
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <input type="date" id="abreise" name="abreise" required="required" />
                     </li>
                     <li>
-                        <label for="email">Email:<span aria-label="required">*</span></label>
-                        <input type="email" name="email" id="email"  required="required" />
-                    </li>
-                    <li>
-                        <label for="telefonnummer">Telefonnummer:<span aria-label="required">*</span></label>
-                        <input type="tel" name="telefonnummer" id="telefonnummer" required="required" />
+                        <p>Lenght of stay is <span id="dauer" ></span> days.</p>
                     </li>
                 </ol>
-        </section>
-        <section>
-            <h2 class="section">Reservierungs Info</h2>
-            <ol class="main-form">
-                <h3 class="subsect">Dates</h3>
-                <li>
-                    <label for="anreise">Anreise<span aria-label="required">*</span></label>
-                    <input type="date" id="anreise" name="anreise" required="required" />
-                </li>
-                <li>
-                    <label for="abreise">Abreise<span aria-label="required">*</span></label>
-                    <input type="date" id="abreise" name="abreise" required="required" />
-                </li>
-                <li>
-                    <p>Lenght of stay is <span id="dauer" ></span> days.</p>
-                </li>
                 <h3 class="subsect">People</h3>
-                <li>
-                    <label for="erwachsen">Erwachsene<span aria-label="required">*</span></label>
-                    <input type="number" min="1" max="99" id="erwachsen" name="erwachsen" class="itemReserv" data-has-discount="discount" required="required" />
-                </li>
-                <li>
-                    <label for="kind">Kinder</label>
-                    <input type="number" min="0" max="99" id="kind" name="kind" class="itemReserv" data-has-discount="discount"/>
-                </li>
-                <li>
-                    <label for="hund">Hunde</label>
-                    <input type="number" min="0" max="10" id="hund" name="hund" class="itemReserv"/>
-                </li>
+                <ol class="inp-group">
+                    <li>
+                        <label for="erwachsen">Erwachsene<span aria-label="required">*</span></label>
+                        <i class="fa-solid fa-person"></i>
+                        <input type="number" min="1" max="99" id="erwachsen" name="erwachsen" class="itemReserv" data-has-discount="discount" required="required" />
+                    </li>
+                    <li>
+                        <label for="kind">Kinder</label>
+                        <i class="fa-solid fa-child"></i>
+                        <input type="number" min="0" max="99" id="kind" name="kind" class="itemReserv" data-has-discount="discount"/>
+                    </li>
+                    <li>
+                        <label for="hund">Hunde</label>
+                        <i class="fa-solid fa-motorcycle"></i>
+                        <input type="number" min="0" max="10" id="hund" name="hund" class="itemReserv"/>
+                    </li>
+                </ol>
                 <h3 class="subsect">Vehicles & Accomodation</h3>
-                <li>
-                    <label for="zelt">Zelt</label>
-                    <input type="number" id="zelt" name="zelt" class="itemReserv"/>
-                </li>
-                <li>
-                    <label for="wohnomobil">Wohnmobil/Wohnwagen</label>
-                    <input type="number" id="wohnomobil" name="wohnomobil" class="itemReserv"/>
-                </li>
-                <li>
-                    <label for="kfz">KFZ</label>
-                    <input type="number" id="kfz" name="kfz" class="itemReserv"/>
-                </li>
-                <li>
-                    <label for="motorrad">Motorrad</label>
-                    <input type="number" id="motorrad" name="motorrad" class="itemReserv"/>
-                </li>
-                
-            </ol>
-        </section>
-        <section id="overview">
-            <h2 class="section">Overview</h2>
-            <ul id="summary"></ul> <!-- here is where the reservation summary will be rendered through js after user input -->
-            <p>Summe: <span id="summeDispl"></span></p>
-            <input type="hidden" readonly id="summe" name="summe" />
-        </section>
-        <section>
-            <button id="submit" type="submit" onclick=submitFn()>Reservieren</button>
-        </section>
-    </form>
+                <ol class="inp-group">
+                    <li>
+                        <label for="zelt">Zelt</label>
+                        <i class="fa-solid fa-tent"></i>
+                        <input type="number" id="zelt" name="zelt" class="itemReserv"/>
+                    </li>
+                    <li>
+                        <label for="wohnomobil">Wohnmobil/Wohnwagen</label>
+                        <i class="fa-solid fa-caravan"></i>
+                        <input type="number" id="wohnomobil" name="wohnomobil" class="itemReserv"/>
+                    </li>
+                    <li>
+                        <label for="kfz">KFZ</label>
+                        <i class="fa-solid fa-car"></i>
+                        <input type="number" id="kfz" name="kfz" class="itemReserv"/>
+                    </li>
+                    <li>
+                        <label for="motorrad">Motorrad</label>
+                        <i class="fa-solid fa-motorcycle"></i>
+                        <input type="number" id="motorrad" name="motorrad" class="itemReserv"/>
+                    </li>
+                </ol>
+            </section>
+            <section id="overview">
+                <h2 class="section">Overview</h2>
+                <ul id="summary"></ul> <!-- here is where the reservation summary will be rendered through js after user input -->
+                <p>Summe: <span id="summeDispl"></span></p>
+                <input type="hidden" readonly id="summe" name="summe" />
+            </section>
+            <section>
+                <button class="btn" id="submit" type="submit" onclick=submitFn()>Reservieren</button>
+            </section>
+        </form>
+    </div>
     <script src="reservierung.js"></script>
     <!-- !!! use type module when local server is set -->
     <!-- <script type="module" src="reservierung.js"></script> -->
