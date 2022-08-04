@@ -127,7 +127,7 @@ function overviewReservation(item, itemPrice, itemTotal) {
 
 function clearSummary() {
     // console.log(">> CLEAR PREVIEW");
-    const overview = document.querySelector("section.overview");
+    const overview = document.querySelector("section#overview");
     document.querySelector("#summary").remove();
     const newSummary = document.createElement("ul");
     newSummary.id = "summary";

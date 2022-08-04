@@ -26,6 +26,20 @@ h1 {
     margin: 0 auto;
 } */
 
+/* !===========================================================================*/
+/* VALIDATION TEST STYLES */
+:valid {
+    border: 5px solid  var(--light-green, #78be45);
+}
+
+:invalid {
+    border: 5px solid crimson;
+}
+/* !===========================================================================*/
+
+/* =============================================================================
+| FORM
+============================================================================= */
 form {
     margin: 0 auto;
     width: 70vw;
@@ -34,13 +48,27 @@ form {
     border-radius: 1em;
 }
 
+form section {
+    margin-bottom: 3em;
+
+}
+
+/* TITLES */
+form h3.subsect {
+    color:var(--dark-green, #1b6d1d);
+    font-weight: bold;
+    border-bottom: 1px solid var(--dark-green, #1b6d1d);
+}
+
+form h2.section {
+    text-transform: uppercase;
+    border-bottom: 1px solid;
+}
+
 input {
     padding: 0.5em;
 }
 
-form section {
-    margin-bottom: 1em;
-}
 
 ul, ol {
     list-style: none;
@@ -53,7 +81,6 @@ ul.main-form {
     flex-direction: column;
     align-items: center;
 }
-
 
 ul.main-form > li + li {
     margin-top: 0.5em;
