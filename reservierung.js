@@ -18,6 +18,9 @@ const conditions = {
 // =============================================================================
 // CONTACT VARIABLES
 
+const form = document.querySelector("form");
+const btnSubmit = document.querySelector('.btn#submit');
+
 const itemsContactAll = document.querySelectorAll("ol#contact input");
 
 // =============================================================================
@@ -41,7 +44,6 @@ const summeInput = document.querySelector("#summe");
 // =============================================================================
 // VALIDATION VARIABLES
 
-const btnSubmit = document.querySelector("#submit");
 const inputAll = document.querySelectorAll("input");
 
 // =============================================================================
@@ -81,6 +83,12 @@ abreise.addEventListener("input", () => {
     return abrDate;
 });
 // =============================================================================
+// SUBMIT
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log(">>>>> ✅💨 FORM SUBMITTED");
+});
+
 
 // =============================================================================
 // !!! FCC TUTORIAL - VALIDATION EVERYTHING
@@ -91,6 +99,53 @@ abreise.addEventListener("input", () => {
 
 let id = (id) => document.getElementById(id);
 let classes = (classes) => document.getElementsByClassName(classes);
+
+const vorname = id("vorname");
+const nachname = id("nachname");
+const email = id("email");
+const tel = id("tel");
+
+const errorMsg = classes("error");
+const successIcon = classes("success-icon");
+const failureIcon = classes("failure-icon");
+
+// fns
+const engine = (id,serial,message) => {
+    if (id.value.trim() === "") { // *** value.trim() ---> removes all extra spaces from value
+        // Field is empty --> add error
+        errorMsg[serial].innerHTML = message;
+        id.style.border = "2px solid crimson";
+        // icons
+        failureIcon[serial].style.opacity = "1";
+        successIcon[serial].style.opacity = "0";
+    } else {
+        // if field has value
+        errorMsg[serial].innerHTML = "";
+        id.style.border = "2px solid yellow";
+        // icons
+        failureIcon[serial].style.opacity = "0";
+        successIcon[serial].style.opacity = "1";
+    }
+};
+
+//event listener
+// function submitFn() {
+//     // e.preventDefault();
+//     console.log(">>>>> submit was clicked");
+//     engine(vorname,0,"Vorname cannot be empty");
+//     engine(nachname,1, "Nachname cannot be empty");
+//     engine(email,2,"Email cannot be empty");
+//     engine(tel,3,"Telefonnummer cannot be empty");
+// };
+
+btnSubmit.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log(">>>>> submit was clicked");
+        engine(vorname,0,"Vorname cannot be empty");
+        engine(nachname,1, "Nachname cannot be empty");
+        engine(email,2,"Email cannot be empty");
+        engine(tel,3,"Telefonnummer cannot be empty");
+});
 
 // inputAll.forEach(inp => {
 //         // inp.checkValidity() || console.log(inp.name, "⛔");

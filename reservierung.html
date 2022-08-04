@@ -22,15 +22,15 @@
                         <li>
                             <label for="vorname">Vorname: <span aria-label="required">*</span></label>
                             <i class="fa-solid fa-user"></i>
-                            <input type="text" name="vorname" id="vorname" required="required" />
+                            <input type="text" name="vorname" id="vorname" />
                             <i class="fas fa-exclamation-circle failure-icon"></i>
                             <i class="far fa-check-circle success-icon"></i>
                             <div class="error"></div>
                         </li>
                         <li>
-                            <label for="name">Name:<span aria-label="required">*</span></label>
+                            <label for="nachname">Nachname:<span aria-label="required">*</span></label>
                             <i class="fa-solid fa-user"></i>
-                            <input type="text" name="name" id="name" required="required" />
+                            <input type="text" name="nachname" id="nachname" />
                             <i class="fas fa-exclamation-circle failure-icon"></i>
                             <i class="far fa-check-circle success-icon"></i>
                             <div class="error"></div>
@@ -38,15 +38,15 @@
                         <li>
                             <label for="email">Email:<span aria-label="required">*</span></label>
                             <i class="fa-solid fa-envelope"></i>
-                            <input type="email" name="email" id="email"  required="required" />
+                            <input type="email" name="email" id="email" />
                             <i class="fas fa-exclamation-circle failure-icon"></i>
                             <i class="far fa-check-circle success-icon"></i>
                             <div class="error"></div>
                         </li>
                         <li>
-                            <label for="telefonnummer">Telefonnummer:<span aria-label="required">*</span></label>
+                            <label for="tel">Telefonnummer:<span aria-label="required">*</span></label>
                             <i class="fa-solid fa-phone"></i>
-                            <input type="tel" name="telefonnummer" id="telefonnummer" required="required" />
+                            <input type="tel" name="tel" id="tel" />
                             <i class="fas fa-exclamation-circle failure-icon"></i>
                             <i class="far fa-check-circle success-icon"></i>
                             <div class="error"></div>
@@ -120,7 +120,8 @@
                 <input type="hidden" readonly id="summe" name="summe" />
             </section>
             <section>
-                <button class="btn" id="submit" type="submit" onclick=submitFn()>Reservieren</button>
+                <button class="btn" id="submit" type="submit">Reservieren</button>
+                <!-- <button class="btn" id="submit" type="submit" onclick="submitFn()">Reservieren</button> -->
             </section>
         </form>
     </div>
