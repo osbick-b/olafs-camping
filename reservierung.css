@@ -89,7 +89,7 @@ form section {
 form li {
     position: relative;
     margin-bottom: 15px;
-    border: 1px solid hotpink;
+    /* border: 1px solid hotpink; */
 }
 
  /* === Labels & else === */
@@ -104,7 +104,7 @@ legend {
 
 /* === Input === */
 form li input {
-    width: 95%; /* !!! Bug is here -- width sup to be 100%, but icon wont come inside*/
+    width: 100%; /* !!! Bug is here -- width sup to be 100%, but icon wont come inside*/
     height: 40px;
     border-radius: 8px;
     outline: none;
@@ -114,7 +114,8 @@ form li input {
 }
 
 form input:focus {
-    border: 2px solid var(--light-green, #78be45);
+    border: 2px solid royalblue;
+    /* border: 2px solid var(--light-green, #78be45); */
 }
 
 /* === Icons === */
