@@ -81,35 +81,27 @@ abreise.addEventListener("input", () => {
     return abrDate;
 });
 // =============================================================================
-//!!! VALIDATION
-inputAll.forEach(inp => {
-        // inp.checkValidity() || console.log(inp.name, "⛔");
-         inp.addEventListener("blur" ,() => {
-            inp.className = inp.checkValidity() || "invalid";
-        });
-    });
 
+// =============================================================================
+// !!! FCC TUTORIAL - VALIDATION EVERYTHING
+// =============================================================================
 // *** TUTORIAL ON FORM VALIDATION
 //www.freecodecamp.org/news/learn-javascript-form-validation-by-making-a-form/
+// =============================================================================
+
+let id = (id) => document.getElementById(id);
+let classes = (classes) => document.getElementsByClassName(classes);
+
+// inputAll.forEach(inp => {
+//         // inp.checkValidity() || console.log(inp.name, "⛔");
+//          inp.addEventListener("blur" ,() => {
+//             inp.className = inp.checkValidity() || "invalid";
+//         });
+//     });
+
 
 // =============================================================================
 // FUNCTIONS
-// =============================================================================
-//!!! FOR VALIDATION & SUBMIT
-function submitForm() {
-    // validateSubmit();
-    //TODO --- add screen to review reservation summary
-}
-
-// function validateSubmit() {
-//     console.log("==> CLICKED SUBMIT");
-//     inputAll.forEach((inp) => {
-//         // inp.checkValidity() || console.log(inp.name, "⛔");
-//         inp.className = inp.checkValidity() || "invalid";
-//     });
-// }
-
-
 // =============================================================================
 // FOR PRICE CALCULATION
 
