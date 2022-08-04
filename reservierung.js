@@ -89,14 +89,14 @@ inputAll.forEach(inp => {
         });
     });
 
-
-
+// *** TUTORIAL ON FORM VALIDATION
+//www.freecodecamp.org/news/learn-javascript-form-validation-by-making-a-form/
 
 // =============================================================================
 // FUNCTIONS
 // =============================================================================
 //!!! FOR VALIDATION & SUBMIT
-function submitForm() {
+https: function submitForm() {
     // validateSubmit();
     //TODO --- add screen to review reservation summary
 }

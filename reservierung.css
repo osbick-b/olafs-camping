@@ -33,15 +33,15 @@ h1 {
     /* border: 5px solid  var(--light-green, #78be45); */
 }
 
-input:invalid {
+/* input:invalid {
     color: crimson;
-    /* border: 5px solid crimson; */
-}
+    border: 5px solid crimson;
+} */
 
 input.invalid {
-/* .invalid { */
     border: 5px solid crimson;
 }
+
 /* !===========================================================================*/
 
 /* =============================================================================
