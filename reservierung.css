@@ -26,7 +26,7 @@ ul, ol {
 /* =============================================================================
 |  HEADINGS
 ============================================================================= */
-h1 {
+h1.main-title {
     color: var(--dark-green, #1b6d1d);
     font-weight: 700;
     line-height: 1.2;
@@ -49,7 +49,21 @@ form h3.subsect {
 | ELEMENTS
 ============================================================================= */
 .btn {
-    padding: 0.5em;
+  margin-top: 15px;
+  width: 100%;
+  height: 45px;
+  background-color: var(--dark-green, #1b6d1d);
+  border: 2px solid var(--dark-green, #1b6d1d);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.1s ease;
+}
+
+.btn:hover {
+  opacity: 0.8;
 }
 
 
@@ -57,41 +71,82 @@ form h3.subsect {
 | FORM
 ============================================================================= */
 /* === Structure === */
+/* !!! form, ol#contact  ----- tutorial: supposed to be form, to order the divs*/
+/* TODO --- figure outwhat to flex in my form structure + edit width down there */
 form {
-    margin: 0 auto;
-    width: 70vw;
-    padding: 1em;
-    border: 1px solid #ccc;
-    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 400px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 50px;
 }
 
 form section {
     margin-bottom: 3em;
 }
 
-/* === Input === */
-input {
-    padding: 0.5em;
+form li {
+    position: relative;
+    margin-bottom: 15px;
+    border: 1px solid hotpink;
 }
 
-input:focus {
-    border-color: hotpink;
-}
-
+ /* === Labels & else === */
 label {
     display: block;
+    margin-bottom: 5px;
 }
 
 legend {
     padding: 0 0.5em;
 }
 
+/* === Input === */
+form li input {
+    width: 95%; /* !!! Bug is here -- width sup to be 100%, but icon wont come inside*/
+    height: 40px;
+    border-radius: 8px;
+    outline: none;
+    border: 2px solid #c4c4c4;
+    padding: 0 30px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
 
+form input:focus {
+    border: 2px solid var(--light-green, #78be45);
+}
+
+/* === Icons === */
+form li i {
+    position: absolute;
+    padding: 10px;
+}
+
+.failure-icon,
+.error {
+  color: red;
+}
+
+.success-icon {
+  color: green;
+}
+
+.error {
+  font-size: 14.5px;
+  margin-top: 5px;
+}
+
+.success-icon,
+.failure-icon {
+  right: 0;
+  opacity: 0;
+}
 
 /* =============================================================================
 | VALIDATION STYLES
 ============================================================================= */
-:valid {
+input:valid {
     color: var(--light-green, #78be45);
     /* border: 5px solid  var(--light-green, #78be45); */
 }
