@@ -108,6 +108,7 @@ const tel = id("tel");
 const errorMsg = classes("error");
 const successIcon = classes("success-icon");
 const failureIcon = classes("failure-icon");
+const validIcon = classes("valid-icon");
 
 // fns
 const engine = (id,serial,message) => {
@@ -116,15 +117,18 @@ const engine = (id,serial,message) => {
         errorMsg[serial].innerHTML = message;
         id.style.border = "2px solid crimson";
         // icons
-        failureIcon[serial].style.opacity = "1";
-        successIcon[serial].style.opacity = "0";
+        // failureIcon[serial].style.opacity = "1";
+        // successIcon[serial].style.opacity = "0";
     } else {
         // if field has value
         errorMsg[serial].innerHTML = "";
         id.style.border = "2px solid yellow";
         // icons
-        failureIcon[serial].style.opacity = "0";
-        successIcon[serial].style.opacity = "1";
+        // validIcon[serial].classList.add("fas");
+        // validIcon[serial].classList.add("fa-exclamation-circle");
+        // validIcon[serial].style.opacity = "1";
+        // failureIcon[serial].style.opacity = "0";
+        // successIcon[serial].style.opacity = "1";
     }
 };
 
@@ -138,25 +142,51 @@ const engine = (id,serial,message) => {
 //     engine(tel,3,"Telefonnummer cannot be empty");
 // };
 
-btnSubmit.addEventListener("click", (e) => {
+btnSubmit.addEventListener("click", (e) => { //TODO -- EDIT: now it tracks click, prevents submitting
     e.preventDefault();
     console.log(">>>>> submit was clicked");
+    inputAll.forEach((inp) => {
+        inp.checkValidity() || console.log(inp.name, "⛔");
+    });
         engine(vorname,0,"Vorname cannot be empty");
         engine(nachname,1, "Nachname cannot be empty");
         engine(email,2,"Email cannot be empty");
         engine(tel,3,"Telefonnummer cannot be empty");
 });
 
-// inputAll.forEach(inp => {
-//         // inp.checkValidity() || console.log(inp.name, "⛔");
-//          inp.addEventListener("blur" ,() => {
-//             inp.className = inp.checkValidity() || "invalid";
-//         });
-//     });
+//!!! valid on blur
+inputAll.forEach(inp => {
+        // inp.checkValidity() || console.log(inp.name, "⛔");
+         inp.addEventListener("blur" ,() => {
+            inpValidate(inp);
+            
+        });
+    });
 
 
 // =============================================================================
 // FUNCTIONS
+// =============================================================================
+//!!! FOR VALIDATION & SUBMIT
+function submitForm() {
+    // validateSubmit();
+    //TODO --- add screen to review reservation summary
+}
+
+function inpValidate(inp) {
+    inp.className = inp.checkValidity() || "invalid";
+    inp.className = inp.required && inp.value.trim() === "" && "invalid"; 
+    // inp.required && inp.value.trim() === "" && console.log(inp.name, "OH NO!!"); //TODO -- check if ok --- Merge this valid with tutorial valid
+}
+
+// function validateSubmit() {
+//     console.log("==> CLICKED SUBMIT");
+//     inputAll.forEach((inp) => {
+//         // inp.checkValidity() || console.log(inp.name, "⛔");
+//         inp.className = inp.checkValidity() || "invalid";
+//     });
+// }
+
 // =============================================================================
 // FOR PRICE CALCULATION
 
